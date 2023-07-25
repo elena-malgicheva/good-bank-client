@@ -38,7 +38,7 @@ const Dashboard = () => {
       );
       console.log(data);
       if (data.success) {
-        console.log("Success");
+        alert("Success! Your deposit of " + depositAmmount + "$ has been processed. \n Your new balance " + newBalance + "$");
         setUserData(data.user);
         setDepositAmmount(0);
         setShow(false);
@@ -65,10 +65,10 @@ const Dashboard = () => {
       );
       console.log(data);
       if (data.success) {
-        console.log("Success");
+        alert("Success! Your withdrawal of " + withdrawAmmount + "$ has been processed. \n Your new balance " + newBalance + "$");
         setUserData(data.user);
         setDepositAmmount(0);
-        handleClose();
+        handleWithdrawClose();
         
       } else {
         console.log(data.message);
@@ -117,7 +117,7 @@ const Dashboard = () => {
       {userData && (
         <div>
           <h2>Hello {userData.username}</h2>
-          
+          <hr />
           <p>Your Balance: ${userData.balance}.00</p>
           
         </div>
