@@ -1,12 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import { AuthContext } from '../Context/AuthContextProvider';
 
 const Login = () => {
     
@@ -60,7 +56,7 @@ const Login = () => {
   };
 
   return (
-    <Form className="app-card w-50 p-5 m-3 create-color">
+    <div className="app-card w-50 p-5 m-3 create-color">
       <h1>Login</h1>
       <hr />
       <form onSubmit={handleSubmit}>
@@ -91,7 +87,7 @@ const Login = () => {
         </span>
       </form>
       
-    </Form>
+    </div>
   );
 };
 

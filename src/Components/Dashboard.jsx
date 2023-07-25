@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import axios from 'axios';
 
@@ -8,11 +8,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 // Icons
-import { TbMoodDollar } from 'react-icons/tb'
-import { RiUserAddFill } from 'react-icons/ri';
 import { FaPiggyBank } from 'react-icons/fa';
-import { BsCardList } from 'react-icons/bs';
-import { RiMoneyDollarCircleFill } from 'react-icons/ri'
+
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);

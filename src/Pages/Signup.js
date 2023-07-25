@@ -3,9 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+
 
 
 const Signup = () => {
@@ -61,13 +59,13 @@ const Signup = () => {
   };
 
   return (
-    <Form className="app-card w-50 p-5 m-3 create-color">
-      <h1 className="m3">Signup Account</h1>
+    <div className="app-card w-50 p-5 m-3 create-color">
+      <h1 className="m3">Signup</h1>
       <hr />
       <form onSubmit={handleSubmit}>
-        <div className="m3">
-          <label htmlFor="email">Email</label>
-          <input
+        <div className="m-1 ">
+          <label className="m-1" htmlFor="email">Email</label>
+          <input className="m-1"
             type="email"
             name="email"
             value={email}
@@ -75,9 +73,9 @@ const Signup = () => {
             onChange={handleOnChange}
           />
         </div>
-        <div className="m3">
-          <label htmlFor="email">Username</label>
-          <input
+        <div className="m-1">
+          <label className="m-1" htmlFor="email">Username</label>
+          <input className="m-1"
             type="text"
             name="username"
             value={username}
@@ -85,9 +83,9 @@ const Signup = () => {
             onChange={handleOnChange}
           />
         </div>
-        <div className="m3">
-          <label htmlFor="password">Password</label>
-          <input
+        <div className="m-1">
+          <label className="m-1" htmlFor="password">Password</label>
+          <input className="m-1"
             type="password"
             name="password"
             value={password}
@@ -102,7 +100,7 @@ const Signup = () => {
         </span>
       </form>
       
-    </Form>
+    </div>
   );
 };
 
