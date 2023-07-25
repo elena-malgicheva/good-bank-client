@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+
+
+body {
+  font-family: "Roboto", Verdana, Geneva, Tahoma, sans-serif;
+  color: #1b1c1e;
+  background: url("../public/back_transp.png") no-repeat fixed -50%;
+  
+}
+
+h1 {
+  font-size: 2rem;
+  /* line-height: 1.25rem; */
+  /* font-weight: bold; */
+  /* margin-top: 0; */
+}
+
+.home-container {
+  width: 35%;
+  padding: 5rem;
+  margin: 2rem;
+  background-color: #e1e0c7;
+  border-radius: 50% 20% / 10% 40%;
+  box-shadow: 12px 12px 2px 1px #fec744;
+}
+
+
+.navbar {
+  width: 100%;
+  background-color:#499195;
+  padding: 25px;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+.nav-item {
+  height: 100%;
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item:hover {
+  background-color: white;
+}
+
+
+.active {
+  background-color: #3b5152;
+  /* border-bottom: #fec744 1px solid; */
+}
+
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #fec744;
+  
+  display: flex;
+  align-items: center;
+}
+
+.logo:hover {
+  background-color: white;
+}
+
+
+.icon {
+  margin-right: 0.5rem;
+  color: #fec744
+}
+
+.foot {
+  font-size: 0.7rem;
+  color: white;
+  background-color: #499195;
+  
+}
+
+.foot a {
+  color: white;
+  text-decoration: none;
+}
+
+.app-card {
+  color: white;
+  border-radius: 25px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+
+}
+
+.deposit-color {
+  background-color: #32b04a; 
+}
+
+.withdraw-color {
+  background-color: #f1592a;
+}
+
+.create-color {
+  background-color: #fec744;
+}
+
+.alldata-color {
+  background-color: whitesmoke;
+  border-radius: 25px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
+}
+
+
