@@ -1,12 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { BalanceProvider } from './Context/BalanceContext';
-import { AuthContextProvider } from './Context/AuthContextProvider'
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
-import Deposit from "./Pages/Deposit";
-import Withdraw from "./Pages/Withdraw";
 import Dashboard from "./Components/Dashboard";
 import AppNavbar from "./Components/Navbar";
 import Foot from "./Components/Foot";
@@ -18,7 +15,7 @@ function App() {
   return (
     
     <div className="App">
-      <AuthContextProvider>
+      
       <BalanceProvider>
           <AppNavbar/>
           <Routes>
@@ -30,7 +27,7 @@ function App() {
           </Routes>
           <Foot />
       </BalanceProvider>
-      </AuthContextProvider>
+      
     </div>
     
   )
