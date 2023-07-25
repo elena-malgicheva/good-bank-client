@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
 import axios from 'axios';
+
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -12,12 +12,12 @@ import { FaPiggyBank } from 'react-icons/fa';
 
 
 const Dashboard = () => {
+  
   const [userData, setUserData] = useState(null);
   const [depositAmmount, setDepositAmmount] = useState(0);
   const [withdrawAmmount, setWithdrawAmmount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
   const [show, setShow] = useState(false);
   const [showWithdraw, setWithdrawShow] = useState(false);
 
@@ -26,7 +26,6 @@ const Dashboard = () => {
   
   const handleShow = () => setShow(true);
   const handleWithdrawShow = () => setWithdrawShow(true);
-
 
   const handleDeposit = async() => {
     const newBalance = parseInt(userData.balance) + parseInt(depositAmmount);
@@ -116,18 +115,19 @@ const Dashboard = () => {
     <div className="app-card w-50 p-5 m-3 deposit-color">
       {userData && (
         <div>
-          <h2>Hello {userData.username}</h2>
+          <h1>Hello {userData.username}</h1>
           <hr />
-          <p>Your Balance: ${userData.balance}.00</p>
+          <h2><FaPiggyBank/>  Your Balance: ${userData.balance}.00</h2>
           
         </div>
       )}
     
-    
-    <Button variant="primary" onClick={handleShow}>
-    Deposit
-    </Button>
-
+    <div className>
+    <Button variant="primary" onClick={handleShow}>Deposit</Button>
+    <Button variant="primary" className="m-3" onClick={handleWithdrawShow}>Withdraw</Button>
+    </div>
+   
+   
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title><FaPiggyBank className='icon' /> Enter Amount you want to deposit</Modal.Title>
@@ -152,9 +152,7 @@ const Dashboard = () => {
       </Modal.Footer>
     </Modal>
     
-    <Button variant="primary" className="m-3" onClick={handleWithdrawShow}>
-    Withdraw
-    </Button>
+    
     <Modal show={showWithdraw} onHide={handleWithdrawClose}>
       <Modal.Header closeButton>
         <Modal.Title><FaPiggyBank className='icon' /> Enter Amount you want to withdraw</Modal.Title>

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Button from 'react-bootstrap/Button';
+import { RiUserAddFill } from 'react-icons/ri';
 
 
 
@@ -60,7 +61,7 @@ const Signup = () => {
 
   return (
     <div className="app-card w-50 p-5 m-3 create-color">
-      <h1 className="m3">Signup</h1>
+      <h1 className="m3"><RiUserAddFill/>Create Account</h1>
       <hr />
       <form onSubmit={handleSubmit}>
         <div className="m-1 ">

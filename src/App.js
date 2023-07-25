@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { BalanceProvider } from './Context/BalanceContext';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Dashboard from "./Components/Dashboard";
 import AppNavbar from "./Components/Navbar";
 import Foot from "./Components/Foot";
+import { AuthProvider } from './Context/AuthContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,7 +16,7 @@ function App() {
     
     <div className="App">
       
-      <BalanceProvider>
+      <AuthProvider>
           <AppNavbar/>
           <Routes>
             <Route path="" element={ <Home/> } />
@@ -26,7 +26,7 @@ function App() {
             
           </Routes>
           <Foot />
-      </BalanceProvider>
+      </AuthProvider>
       
     </div>
     

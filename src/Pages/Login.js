@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from '../Context/AuthContext';
 
-import Button from 'react-bootstrap/Button';
+
+import { Button } from 'react-bootstrap';
+
 
 const Login = () => {
-    
+  const { login } = useContext(AuthContext);
+  
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState({
         email: "",
@@ -35,9 +39,13 @@ const Login = () => {
         },
         { withCredentials: true }
       );
-      const { success, message } = data;
+      const { success, message, userName, userEmail } = data;
+      
+      console.log(inputValue.email);
       if (success) {
         handleSuccess(message);
+        console.log("LETTING YOU IN")
+        login(userName, userEmail);
         
         setTimeout(() => {
           navigate("/dashboard");
@@ -56,7 +64,8 @@ const Login = () => {
   };
 
   return (
-    <div className="app-card w-50 p-5 m-3 create-color">
+    
+      <div className="app-card w-50 p-5 m-3 create-color">
       <h1>Login</h1>
       <hr />
       <form onSubmit={handleSubmit}>
@@ -88,6 +97,8 @@ const Login = () => {
       </form>
       
     </div>
+      
+    
   );
 };
 
