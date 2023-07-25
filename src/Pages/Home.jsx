@@ -3,6 +3,8 @@ import { TbMoodDollar } from 'react-icons/tb'
 
 function Home() {
 
+  console.log("we are home")
+
   return (
   
   <div class="home-container">
