@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../Context/UserContext';
+import axios from '../API/api';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -10,8 +10,12 @@ import InputGroup from 'react-bootstrap/InputGroup';
 // Icons
 import { FaPiggyBank } from 'react-icons/fa';
 
+const BALANCE_URL = '/deposit/';
+const USER_URL = '/user/';
 
 const Dashboard = () => {
+
+  const { email, username } = useContext(UserContext);
   
   const [userData, setUserData] = useState(null);
   const [depositAmmount, setDepositAmmount] = useState(0);
@@ -29,10 +33,11 @@ const Dashboard = () => {
 
   const handleDeposit = async() => {
     const newBalance = parseInt(userData.balance) + parseInt(depositAmmount);
+    console.log(email)
     try {
       const { data } = await axios.post(
         
-        "https://good-bank-server-05e57b3f40b4.herokuapp.com/deposit/lena@mail777/" + newBalance,
+        BALANCE_URL + email +'/'+ newBalance,
         { withCredentials: true }
       );
       console.log(data);
@@ -59,7 +64,7 @@ const Dashboard = () => {
     else {
     try {
       const { data } = await axios.post(
-        "https://good-bank-server-05e57b3f40b4.herokuapp.com/deposit/lena@mail777/" + newBalance,
+        BALANCE_URL + email +'/'+ newBalance,
         { withCredentials: true }
       );
       console.log(data);
@@ -82,7 +87,7 @@ const Dashboard = () => {
     const fetchUserData = async() => {
       try {
         const { data } = await axios.get(
-          "https://good-bank-server-05e57b3f40b4.herokuapp.com/user/lena@mail777",
+          USER_URL + email,
           { withCredentials: true }
         );
         console.log(data);
@@ -115,7 +120,7 @@ const Dashboard = () => {
     <div className="app-card w-50 p-5 m-3 deposit-color">
       {userData && (
         <div>
-          <h1>Hello {userData.username}</h1>
+          <h1>Hello, {username}</h1>
           <hr />
           <h2><FaPiggyBank/>  Your Balance: ${userData.balance}.00</h2>
           
@@ -167,13 +172,8 @@ const Dashboard = () => {
         <InputGroup.Text>.00</InputGroup.Text>
       </InputGroup></Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleWithdrawClose}>
-        
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleWithdraw}>
-          Withdraw
-        </Button>
+        <Button variant="secondary" onClick={handleWithdrawClose}>Close</Button>
+        <Button variant="primary" onClick={handleWithdraw}>Withdraw</Button>
       </Modal.Footer>
     </Modal>
     </div>

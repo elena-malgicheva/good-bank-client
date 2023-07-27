@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+
 
 import Button from 'react-bootstrap/Button';
 import { RiUserAddFill } from 'react-icons/ri';
 
+import { UserContext } from '../Context/UserContext';
 
+
+import axios from '../API/api';
+const SIGNUP_URL = '/signup'
 
 const Signup = () => {
   const navigate = useNavigate();
+  const { email, username, setEmail, setUserName } = useContext(UserContext);
   const [inputValue, setInputValue] = useState({
-    email: "",
-    password: "",
-    username: "",
+    inputEmail: "",
+    inputPassword: "",
+    inputUsername: "",
   });
-  const { email, password, username } = inputValue;
+  const { inputEmail, inputPassword, inputUsername } = inputValue;
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -32,7 +37,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://good-bank-server-05e57b3f40b4.herokuapp.com/signup",
+        'https://good-bank-server-05e57b3f40b4.herokuapp.com/signup',
         {
           ...inputValue,
         },
@@ -41,7 +46,9 @@ const Signup = () => {
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
-        alert("Account successfully created")
+        setEmail(inputEmail);
+        setUserName(inputUsername);
+        alert("Account successfully created for user " + inputUsername);
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
@@ -53,9 +60,9 @@ const Signup = () => {
     }
     setInputValue({
       ...inputValue,
-      email: "",
-      password: "",
-      username: "",
+      inputEmail: "",
+      inputPassword: "",
+      inputUsername: "",
     });
   };
 
@@ -65,32 +72,32 @@ const Signup = () => {
       <hr />
       <form onSubmit={handleSubmit}>
         <div className="m-1 ">
-          <label className="m-1" htmlFor="email">Email</label>
+          <label className="m-1" htmlFor="inputEmail">Email</label>
           <input className="m-1"
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Enter your email"
+            type="inputEmail"
+            name="inputEmail"
+            value={inputEmail}
+            placeholder="Enter your Email"
             onChange={handleOnChange}
           />
         </div>
         <div className="m-1">
-          <label className="m-1" htmlFor="email">Username</label>
+          <label className="m-1" htmlFor="inputEmail">Username</label>
           <input className="m-1"
             type="text"
-            name="username"
-            value={username}
-            placeholder="Enter your username"
+            name="inputUsername"
+            value={inputUsername}
+            placeholder="Enter your Username"
             onChange={handleOnChange}
           />
         </div>
         <div className="m-1">
-          <label className="m-1" htmlFor="password">Password</label>
+          <label className="m-1" htmlFor="inputPassword">Password</label>
           <input className="m-1"
             type="password"
-            name="password"
-            value={password}
-            placeholder="Enter your password"
+            name="inputPassword"
+            value={inputPassword}
+            placeholder="Enter your Password"
             onChange={handleOnChange}
           />
         </div>

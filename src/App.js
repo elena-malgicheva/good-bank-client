@@ -6,7 +6,7 @@ import Signup from './Pages/Signup';
 import Dashboard from "./Components/Dashboard";
 import AppNavbar from "./Components/Navbar";
 import Foot from "./Components/Foot";
-import { AuthProvider } from './Context/AuthContext';
+import { UserProvider } from './Context/UserContext';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,7 +16,7 @@ function App() {
     
     <div className="App">
       
-      <AuthProvider>
+      <UserProvider>
           <AppNavbar/>
           <Routes>
             <Route path="" element={ <Home/> } />
@@ -26,7 +26,7 @@ function App() {
             
           </Routes>
           <Foot />
-      </AuthProvider>
+      </UserProvider>
       
     </div>
     
