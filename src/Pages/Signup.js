@@ -76,7 +76,7 @@ const Login = () => {
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
-                        <a href="#">Redirecting you</a>
+                        Redirecting you
                     </p>
                 </div>
             ) : (
