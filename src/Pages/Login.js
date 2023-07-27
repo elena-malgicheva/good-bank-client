@@ -114,7 +114,7 @@ const Login = () => {
                         <Button onClick={handleSubmit}>Login</Button>
                     </form>
                     <div className="m-1">
-                        New to Good Bank? <Link to={"/signup"}>Create Account</Link>
+                        New to Good Bank? <Link to={"/register"}>Create Account</Link>
                     </div>
                 </section>
             )}

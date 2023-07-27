@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../Context/UserContext';
+import { Link } from "react-router-dom";
 import axios from '../API/api';
 
 import Button from 'react-bootstrap/Button';
@@ -23,6 +24,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [show, setShow] = useState(false);
+  const [isAuth, setAuth] = useState(false);
   const [showWithdraw, setWithdrawShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -92,7 +94,7 @@ const Dashboard = () => {
         );
         console.log(data);
         if (data.success) {
-          console.log(data.message);
+          setAuth(true);
           setUserData(data.user);
           
         } else {
@@ -109,6 +111,18 @@ const Dashboard = () => {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!isAuth) {
+    return <div className="app-card w-50 p-5 m-3 withdraw-color">
+      <h2>You're not authorized, please login</h2>
+      <Link to='/login' className='m-2'>Login</Link>
+      <Button className='m-2'>Signup</Button>
+      </div>;
   }
 
   if (error) {
