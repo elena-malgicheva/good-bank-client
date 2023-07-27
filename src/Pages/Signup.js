@@ -1,115 +1,134 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-
-import Button from 'react-bootstrap/Button';
-import { RiUserAddFill } from 'react-icons/ri';
-
 import { UserContext } from '../Context/UserContext';
+import { Button } from 'react-bootstrap';
+import { RiUserAddFill } from 'react-icons/ri';
 
 
 import axios from '../API/api';
-const SIGNUP_URL = '/signup'
+const REGISTER_URL = '/register';
 
-const Signup = () => {
-  const navigate = useNavigate();
-  const { email, username, setEmail, setUserName } = useContext(UserContext);
-  const [inputValue, setInputValue] = useState({
-    inputEmail: "",
-    inputPassword: "",
-    inputUsername: "",
-  });
-  const { inputEmail, inputPassword, inputUsername } = inputValue;
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    setInputValue({
-      ...inputValue,
-      [name]: value,
-    });
-  };
 
-  const handleError = (err) =>
-    console.error(err);
-  const handleSuccess = (msg) =>
-    console.log(msg);
+const Login = () => {
+  
+    const navigate = useNavigate();
+    
+    const { email, username, setEmail, setUserName } = useContext(UserContext);
+    const userRef = useRef();
+    const errRef = useRef();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post(
-        'https://good-bank-server-05e57b3f40b4.herokuapp.com/signup',
-        {
-          ...inputValue,
-        },
-        { withCredentials: true }
-      );
-      const { success, message } = data;
-      if (success) {
-        handleSuccess(message);
-        setEmail(inputEmail);
-        setUserName(inputUsername);
-        alert("Account successfully created for user " + inputUsername);
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 1000);
-      } else {
-        handleError(message);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    setInputValue({
-      ...inputValue,
-      inputEmail: "",
-      inputPassword: "",
-      inputUsername: "",
-    });
-  };
+    // const [username, setUsername] = useState('');
+    const [inputEmail, setInputEmail] = useState('');
+    const [inputUsername, setInputUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+
+    useEffect(() => {
+        userRef.current.focus();
+    }, [])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [inputEmail, inputUsername, password])
+
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      console.log("submitting POST with " )
+        try{
+            const response = await axios.post(
+                REGISTER_URL,
+                {   "email": inputEmail,
+                    "username": inputUsername, 
+                    "password": password },
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+
+
+            if(response.data.success) {
+                setEmail(inputEmail);
+                setUserName(inputUsername);
+                setSuccess(true);
+                console.log("Letting your in", username)
+                setTimeout(() => {
+                navigate("/dashboard");
+              }, 1000);
+            }
+
+        } catch (err) {
+            console.log(err);
+            setSuccess(false);
+            setInputEmail('');
+            setPassword('');
+        }          
+      
+  }
+  
 
   return (
     <div className="app-card w-50 p-5 m-3 create-color">
-      <h1 className="m3"><RiUserAddFill/>Create Account</h1>
-      <hr />
-      <form onSubmit={handleSubmit}>
-        <div className="m-1 ">
-          <label className="m-1" htmlFor="inputEmail">Email</label>
-          <input className="m-1"
-            type="inputEmail"
-            name="inputEmail"
-            value={inputEmail}
-            placeholder="Enter your Email"
-            onChange={handleOnChange}
-          />
+            {success ? (
+                <div>
+                    <h1>You are logged in!</h1>
+                    <br />
+                    <p>
+                        <a href="#">Redirecting you</a>
+                    </p>
+                </div>
+            ) : (
+                <section>
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+                    <h1><RiUserAddFill /> Create Account</h1>
+                    <hr/>
+                    <form onSubmit={handleSubmit} className="m-1">
+                    <div>
+                        <label htmlFor="username" className="m-1">Username</label>
+                        <input
+                            type="text"
+                            id="username"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setInputUsername(e.target.value)}
+                            value={inputUsername}
+                            required
+                        />
+                        </div>
+                        <div>
+                        <label htmlFor="email" className="m-1">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            ref={userRef}
+                            autoComplete="off"
+                            onChange={(e) => setInputEmail(e.target.value)}
+                            value={inputEmail}
+                            required
+                        />
+                        </div>
+                        <div>
+                        <label htmlFor="password" className="m-1">Password:</label>
+                        <input
+                            className="m-1"
+                            type="password"
+                            id="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                            required
+                        />
+                        </div>
+                        <Button onClick={handleSubmit}>Create Account</Button>
+                    </form>
+                    <div className="m-1">
+                    Already have an account? <Link to={"/login"}>Login</Link>
+                    </div>
+                </section>
+            )}
         </div>
-        <div className="m-1">
-          <label className="m-1" htmlFor="inputEmail">Username</label>
-          <input className="m-1"
-            type="text"
-            name="inputUsername"
-            value={inputUsername}
-            placeholder="Enter your Username"
-            onChange={handleOnChange}
-          />
-        </div>
-        <div className="m-1">
-          <label className="m-1" htmlFor="inputPassword">Password</label>
-          <input className="m-1"
-            type="password"
-            name="inputPassword"
-            value={inputPassword}
-            placeholder="Enter your Password"
-            onChange={handleOnChange}
-          />
-        </div>
-        <Button type="submit">Submit</Button>
-        <br/>
-        <span>
-          Already have an account? <Link to={"/login"}>Login</Link>
-        </span>
-      </form>
+    )
+}
       
-    </div>
-  );
-};
-
-export default Signup;
+export default Login;
