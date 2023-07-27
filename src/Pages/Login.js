@@ -34,6 +34,7 @@ const Login = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+      console.log("submitting")
         try{
             const response = await axios.post(LOGIN_URL,
                 {   "email": inputEmail, 
@@ -76,15 +77,14 @@ const Login = () => {
                     </p>
                 </div>
             ) : (
-                <div className="m-1">
+                <section>
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1><RiUserAddFill /> LOGIN</h1>
                     <hr/>
                     <form onSubmit={handleSubmit} className="m-1">
                         <div>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email" className="m-1">Email</label>
                         <input
-                            className="m-1"
                             type="email"
                             id="email"
                             ref={userRef}
@@ -105,49 +105,15 @@ const Login = () => {
                             required
                         />
                         </div>
-                        <Button>Login</Button>
+                        <Button onClick={handleSubmit}>Login</Button>
                     </form>
                     <div className="m-1">
                         New to Good Bank? <Link to={"/signup"}>Create Account</Link>
                     </div>
-                </div>
+                </section>
             )}
         </div>
     )
 }
-    
-    //   <div className="app-card w-50 p-5 m-3 create-color">
-    //   <h1>Login</h1>
-    //   <hr />
-    //   <form onSubmit={handleSubmit}>
-    //     <div className="m-1">
-    //       <label className="m-1" htmlFor="email">Email</label>
-    //       <input
-    //         type="email"
-    //         name="email"
-    //         value={email}
-    //         placeholder="Enter your email"
-    //         onChange={handleOnChange}
-    //       />
-    //     </div>
-    //     <div className="m-1">
-    //       <label className="m-1" htmlFor="password">Password</label>
-    //       <input
-    //         type="password"
-    //         name="password"
-    //         value={password}
-    //         placeholder="Enter your password"
-    //         onChange={handleOnChange}
-    //       />
-    //     </div>
-    //     <Button type="submit">Login</Button>
-    //     <br/>
-    //     <span>
-    //       New to Good Bank? <Link to={"/signup"}>Signup</Link>
-    //     </span>
-    //   </form>
       
-    // </div>
-      
-
 export default Login;
