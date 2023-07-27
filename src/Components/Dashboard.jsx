@@ -118,10 +118,13 @@ const Dashboard = () => {
   }
 
   if (!isAuth) {
-    return <div className="app-card w-50 p-5 m-3 withdraw-color">
+    return <div className="app-card w-75 p-5 m-3 withdraw-color">
+      
       <h2>You're not authorized, please login</h2>
-      <Link to='/login' className='m-2'>Login</Link>
-      <Button className='m-2'>Signup</Button>
+      <div className='float-end p-15'>
+      <Link to='/login' className='m-2'><button type="button" className="btn btn-light">Login</button></Link>
+      <Link to='/register' className='m-2'><button type="button" className="btn btn-light">Signup</button></Link>
+      </div>
       </div>;
   }
 
@@ -141,7 +144,7 @@ const Dashboard = () => {
         </div>
       )}
     
-    <div className>
+    <div className=''>
     <Button variant="primary" onClick={handleShow}>Deposit</Button>
     <Button variant="primary" className="m-3" onClick={handleWithdrawShow}>Withdraw</Button>
     </div>

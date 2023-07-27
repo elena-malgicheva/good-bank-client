@@ -87,10 +87,11 @@ const Login = () => {
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1><RiUserAddFill /> LOGIN</h1>
                     <hr/>
-                    <form onSubmit={handleSubmit} className="m-1">
+                    <form className="form-group" onSubmit={handleSubmit} >
                         <div>
                         <label htmlFor="email" className="m-1">Email</label>
                         <input
+                            className="form-control m-1"
                             type="email"
                             id="email"
                             ref={userRef}
@@ -103,7 +104,7 @@ const Login = () => {
                         <div>
                         <label htmlFor="password" className="m-1">Password:</label>
                         <input
-                            className="m-1"
+                            className="form-control m-1"
                             type="password"
                             id="password"
                             onChange={(e) => setPassword(e.target.value)}
@@ -111,7 +112,7 @@ const Login = () => {
                             required
                         />
                         </div>
-                        <Button onClick={handleSubmit}>Login</Button>
+                        <Button className="btn btn-light m-3" onClick={handleSubmit}>Login</Button>
                     </form>
                     <div className="m-1">
                         New to Good Bank? <Link to={"/register"}>Create Account</Link>

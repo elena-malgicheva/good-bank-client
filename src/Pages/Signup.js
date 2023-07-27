@@ -11,11 +11,10 @@ const Login = () => {
   
     const navigate = useNavigate();
     
-    const { email, username, setEmail, setUserName } = useContext(UserContext);
+    const { setEmail, setUserName } = useContext(UserContext);
     const userRef = useRef();
     const errRef = useRef();
 
-    // const [username, setUsername] = useState('');
     const [inputEmail, setInputEmail] = useState('');
     const [inputUsername, setInputUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -33,7 +32,7 @@ const Login = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log("submitting POST with " )
+      
         try{
             const response = await axios.post(
                 REGISTER_URL,
@@ -88,10 +87,11 @@ const Login = () => {
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1><RiUserAddFill /> Create Account</h1>
                     <hr/>
-                    <form onSubmit={handleSubmit} className="m-1">
+                    <form className="form-group" onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor="username" className="m-1">Username</label>
+                        <label htmlFor="username" className="">Username</label>
                         <input
+                            className="form-control"
                             type="text"
                             id="username"
                             ref={userRef}
@@ -104,6 +104,7 @@ const Login = () => {
                         <div>
                         <label htmlFor="email" className="m-1">Email</label>
                         <input
+                            className="form-control"
                             type="email"
                             id="email"
                             ref={userRef}
@@ -116,7 +117,8 @@ const Login = () => {
                         <div>
                         <label htmlFor="password" className="m-1">Password:</label>
                         <input
-                            className="m-1"
+                            className="form-control m-1"
+                            
                             type="password"
                             id="password"
                             onChange={(e) => setPassword(e.target.value)}
@@ -124,7 +126,7 @@ const Login = () => {
                             required
                         />
                         </div>
-                        <Button onClick={handleSubmit}>Create Account</Button>
+                        <Button className="btn btn-light m-3" onClick={handleSubmit}>Create Account</Button>
                     </form>
                     <div className="m-1">
                     Already have an account? <Link to={"/login"}>Login</Link>
