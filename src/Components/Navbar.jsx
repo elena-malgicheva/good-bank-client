@@ -30,7 +30,7 @@ function AppNavbar() {
       <Navbar.Toggle />
         
       <Navbar.Collapse className="justify-content-end">
-        <NavLink className={(navData) => navData.isActive ?  NavLinkClasses +' active' : NavLinkClasses } to="signup"><RiUserAddFill className='icon' /> SIGNUP</NavLink>
+        <NavLink className={(navData) => navData.isActive ?  NavLinkClasses +' active' : NavLinkClasses } to="register"><RiUserAddFill className='icon' /> SIGNUP</NavLink>
         <NavLink className={(navData) => navData.isActive ?  NavLinkClasses +' active' : NavLinkClasses } to="login" ><RiUserAddFill className='icon' /> LOGIN</NavLink>
         <NavLink className={(navData) => navData.isActive ?  NavLinkClasses +' active' : NavLinkClasses } to=""><BsCardList className='icon' /> LOGOFF</NavLink>
       </Navbar.Collapse> 

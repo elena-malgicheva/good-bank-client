@@ -5,10 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import { RiUserAddFill } from 'react-icons/ri';
 
-import { UserContext } from '../Context/UserContext';
+import { UserContext } from '../../Context/UserContext';
 
 
-import axios from '../API/api';
+import axios from '../../API/api';
 const SIGNUP_URL = '/signup'
 
 const Signup = () => {

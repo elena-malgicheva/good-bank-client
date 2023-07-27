@@ -4,10 +4,8 @@ import { UserContext } from '../Context/UserContext';
 import { Button } from 'react-bootstrap';
 import { RiUserAddFill } from 'react-icons/ri';
 
-
 import axios from '../API/api';
 const REGISTER_URL = '/register';
-
 
 const Login = () => {
   
@@ -53,14 +51,20 @@ const Login = () => {
                 setEmail(inputEmail);
                 setUserName(inputUsername);
                 setSuccess(true);
-                console.log("Letting your in", username)
                 setTimeout(() => {
                 navigate("/dashboard");
               }, 1000);
             }
 
+            else {
+                alert(response.data.message)
+                setSuccess(false);
+                setInputEmail('');
+                setPassword('');
+            }
+
         } catch (err) {
-            console.log(err);
+            alert(err);
             setSuccess(false);
             setInputEmail('');
             setPassword('');

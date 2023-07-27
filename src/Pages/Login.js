@@ -35,7 +35,7 @@ const Login = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log("submitting")
+      
         try{
             const response = await axios.post(LOGIN_URL,
                 {   "email": inputEmail, 
@@ -55,6 +55,13 @@ const Login = () => {
                 setTimeout(() => {
                 navigate("/dashboard");
               }, 1000);
+            }
+
+            else {
+                alert(response.data.message)
+                setSuccess(false);
+                setInputEmail('');
+                setPassword('');
             }
 
         } catch (err) {
