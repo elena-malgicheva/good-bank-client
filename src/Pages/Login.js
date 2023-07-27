@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from '../Context/UserContext';
 import { Button } from 'react-bootstrap';
 import { RiUserAddFill } from 'react-icons/ri';
-import { GrLogin } from "react-icons/gr";
+
+
 
 import axios from '../API/api';
 const LOGIN_URL = '/login';
@@ -13,11 +14,11 @@ const Login = () => {
   
     const navigate = useNavigate();
     
-    const { email, username, setEmail, setUserName } = useContext(UserContext);
+    const { username, setEmail, setUserName } = useContext(UserContext);
     const userRef = useRef();
     const errRef = useRef();
 
-    // const [username, setUsername] = useState('');
+    
     const [inputEmail, setInputEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
@@ -72,9 +73,7 @@ const Login = () => {
                 <div>
                     <h1>You are logged in!</h1>
                     <br />
-                    <p>
-                        <a href="#">Redirecting you</a>
-                    </p>
+                    <p> Redirecting you </p>
                 </div>
             ) : (
                 <section>
